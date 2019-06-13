@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Server Inspector</title>
+  <link rel="stylesheet" href="static/index.css">
+</head>
+<body>
+  Current board (n={{ size }}):
+  <table id="board-view">
+  {% for row in board %}
+    <tr class="board-row">
+    {% for tile in row %}
+      {% if tile %}
+        <td class="board-tile">{{ tile }}</td>
+      {% else %}
+        <td class="board-tile" id="board-hole"></td>
+      {% endif %}
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+
+  <form action="{{ url_for('tile_swap') }}" method="post">
+    <div>Tile swap:</div>
+    (<input type="text" name="i" id="col-selector">, <input type="text" name="j" id="row-selector">)
+    <button type="submit">Swap</button>
+  </form>
+</body>
+</html>
